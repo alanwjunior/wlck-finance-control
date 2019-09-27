@@ -1,0 +1,38 @@
+.app-container {
+  min-height: 100vh;
+  width: 100%;
+  background-color: #eee;
+}
+
+.menu {
+  background-color: #fff;
+  box-shadow: 0 1px 4px 0 rgba(0,0,0,.14);  
+}
+
+.btn-icon {
+  display: inline-block;
+}
+
+.dashboard {
+  padding: 5% 5%;
+}
+
+.dashboard-card {
+  padding-bottom: 5%;
+}
+
+.circle {
+  height: 80px;
+  width: 80px;
+  display: grid;
+  -webkit-box-align: center;
+  align-items: center;
+  border-radius: 5000px;
+  border: 5px solid #3f51b5;
+  margin: 0 auto;
+}
+
+.circle span {
+  text-align: center;
+  font-weight: 500;
+}
