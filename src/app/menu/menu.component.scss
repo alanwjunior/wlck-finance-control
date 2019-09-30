@@ -1,0 +1,25 @@
+.app-container {
+  min-height: 100vh;
+  width: 100%;
+  background-color: #eee;
+}
+
+.menu {
+  background-color: #fff;
+  box-shadow: 0 1px 4px 0 rgba(0,0,0,.14);  
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.btn-icon {
+  display: inline-block;
+  cursor: pointer;
+}
+
+.menu-btn {
+  font-size: 32px;
+  height: auto;
+  width: auto;
+  vertical-align: middle;
+  cursor: pointer;
+}

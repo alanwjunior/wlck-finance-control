@@ -1,0 +1,56 @@
+<div class="app-container">
+  <div class="row transactions-history application-container">
+    <div class="col-12">
+      <h4 class="transactions-history-title" [matMenuTriggerFor]="adminMenu">
+        Setembro 2019
+        <mat-icon class="history-icon">keyboard_arrow_down</mat-icon>
+      </h4>
+      <mat-menu #adminMenu="matMenu" yPosition="below">
+        <button mat-menu-item>Setembro 2019</button>
+        <button mat-menu-item>Agosto 2019</button>
+      </mat-menu>
+    </div>
+
+    <div class="col-12">
+      <mat-card style="padding-bottom: 0px;">
+        <div class="row">
+          <div class="col-12 monthly-resume">
+            <h5>Entradas</h5>
+            <p>R$0 de R$5000 planejados</p>
+            <mat-progress-bar mode="determinate" value="40"></mat-progress-bar>
+          </div>
+          <div class="col-12 monthly-resume">
+            <h5>Saídas</h5>
+            <p>R$0 de R$5000 planejados</p>
+            <mat-progress-bar mode="determinate" value="40"></mat-progress-bar>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-12">
+            <h5>Transações</h5>
+          </div>
+        </div>
+
+        <div 
+          class="row" 
+          *ngFor="let transaction of monthlyTransactions; let i = index"
+          [ngClass]="{ 'transaction': i !== 0 }">
+          <div class="col-2">
+            <span>
+              <i class="material-icons">
+                {{ transaction.icon }}
+              </i>
+            </span>
+          </div>
+          <div class="col-7">
+            {{ transaction.establishment }}
+          </div>
+          <div class="col-3">
+            R${{ transaction.value }}
+          </div>
+        </div>
+      </mat-card>
+    </div>
+  </div>
+</div>

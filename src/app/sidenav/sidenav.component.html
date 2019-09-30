@@ -1,0 +1,26 @@
+<div class="sidenav application-container">
+  <div class="row page-header">
+    <div class="col-2 align-center">
+      <span class="back-icon" (click)="closeMenu()">
+        <i class="material-icons">
+          arrow_back
+        </i>
+      </span>
+    </div>
+    <div class="col-10">
+      <h6 class="menu-title">Menu</h6>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12">
+      <mat-list>
+        <mat-list-item class="menu-item" (click)="openDashboard()">Dashboard</mat-list-item>
+        <mat-list-item class="menu-item" (click)="openNewTransaction()">Nova transação</mat-list-item>
+        <mat-list-item class="menu-item" (click)="openMonthlyPlanning()">Planejamento mensal</mat-list-item>
+        <mat-list-item class="menu-item" (click)="openHistory()">Histórico</mat-list-item>
+        <mat-list-item class="menu-item" (click)="logout()">Logout</mat-list-item>
+      </mat-list>
+    </div>
+  </div>
+</div>

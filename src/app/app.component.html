@@ -1,1 +1,16 @@
-<router-outlet></router-outlet>
+<!-- <router-outlet></router-outlet> -->
+<mat-sidenav-container class="app-sidenav-container">
+  <mat-sidenav 
+    #sidenav
+    mode="over"
+    position="start"
+    style="width: 100%;">
+    <app-sidenav (onCloseMenu)="sidenav.toggle()"></app-sidenav>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <app-menu (onOpenMenu)="sidenav.toggle()"></app-menu>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
+  
