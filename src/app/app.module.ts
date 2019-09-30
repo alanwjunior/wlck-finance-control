@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { environment } from '../environments/environment';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -27,6 +28,11 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { SidenavComponent } from './sidenav/sidenav.component';
 import { TransactionsHistoryComponent } from './transactions-history/transactions-history.component';
 import { MonthlyPlanningComponent } from './monthly-planning/monthly-planning.component';
+
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireStorageModule } from '@angular/fire/storage';
 
 @NgModule({
   declarations: [
@@ -57,7 +63,11 @@ import { MonthlyPlanningComponent } from './monthly-planning/monthly-planning.co
     MatSidenavModule,
     MatListModule,
     MatMenuModule,
-    MatDividerModule
+    MatDividerModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule,
+    AngularFireAuthModule,
+    AngularFireStorageModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
