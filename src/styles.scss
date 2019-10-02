@@ -52,3 +52,18 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 button:focus {
   outline: 0px !important;
 }
+
+.app-notification-error {
+  color: #ffffff;
+  background-color: #dc3545;
+}
+
+.app-notification-success {
+  color: #ffffff;
+  background-color: #28a745;
+}
+
+.app-notification-warning {
+  color: #212529;
+  background-color: #ffc107;
+}

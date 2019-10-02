@@ -1,12 +1,12 @@
 <div class="app-container">
-  <div class="dashboard application-container">
+  <div class="dashboard application-container" *ngIf="actualMonthlyPlanning">
     
     <div class="row dashboard-card">
       <div class="col-12">
         <mat-card>
           <h5>Entradas</h5>
-          <p>R$0 de R$5000 planejados</p>
-          <mat-progress-bar mode="determinate" value="40"></mat-progress-bar>
+          <p>R${{ totalIncomes }} de R${{ actualMonthlyPlanning.plannedIncome }} planejados</p>
+          <mat-progress-bar mode="determinate" [value]="percentageIncomes"></mat-progress-bar>
         </mat-card>
       </div>
     </div>
@@ -15,8 +15,8 @@
       <div class="col-12">
         <mat-card>
           <h5>Saída</h5>
-          <p>R$0 de R$5000 planejados</p>
-          <mat-progress-bar mode="determinate" value="40"></mat-progress-bar>
+          <p>R${{ totalOutcomes }} de R${{ actualMonthlyPlanning.plannedOutcome }} planejados</p>
+          <mat-progress-bar mode="determinate" [value]="percentageOutcomes"></mat-progress-bar>
         </mat-card>
       </div>
     </div>
@@ -27,7 +27,7 @@
           <h6>Dias restantes</h6>
           <div class="circle">
             <span>
-              20
+              {{ this.pendingDays }}
             </span>
           </div>
         </div>
@@ -48,24 +48,30 @@
       <div class="col-12">
         <mat-card>
           <h5>Últimas transações</h5>
-          <div class="row">
+          <div class="row" *ngFor="let transaction of transactions">
             <div class="col-2">
-              <span>
+              <span [ngClass]="{ 'income': transaction.transactionType === 0, 'outcome': transaction.transactionType === 1  }">
                 <i class="material-icons">
-                    fitness_center
+                    {{ transaction.icon }}
                   </i>
               </span>
             </div>
-            <div class="col-7">
-              Pão de açúcar
+            <div class="col-6">
+              {{ transaction.establishment }}
             </div>
-            <div class="col-3">
-              R$7500
+            <div class="col-4">
+              {{ transaction.transactionType == 0 ? '' : '- ' }}R${{ transaction.value }}
             </div>
           </div>
         </mat-card>
       </div>
     </div>
 
+  </div>
+
+  <div class="row" *ngIf="!actualMonthlyPlanning">
+    <div class="col-12">
+      Nenhum planejamento para o mês atual.
+    </div>
   </div>
 </div>

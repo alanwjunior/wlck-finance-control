@@ -7,6 +7,7 @@ import { MatDatepicker } from '@angular/material/datepicker';
 import * as _moment from 'moment';
 // tslint:disable-next-line:no-duplicate-imports
 import {default as _rollupMoment, Moment} from 'moment';
+import { PlanningService } from '../services/planning/planning.service';
 const moment = _rollupMoment || _moment;
 // See the Moment.js docs for the meaning of these formats:
 // https://momentjs.com/docs/#/displaying/format/
@@ -35,28 +36,67 @@ export const MY_FORMATS = {
 export class MonthlyPlanningComponent implements OnInit {
 
   date = new FormControl(moment());
+  plannedMonth = null;
+  plannedYear = null;
 
-  constructor() { }
+  planning = null;
 
-  ngOnInit() {
+  constructor(
+    private planningService: PlanningService
+  ) { }
+
+  async ngOnInit() {
+    const today = new Date();
+    const result = await this.planningService.getMonthlyPlanning(today.getFullYear(), today.getMonth() + 1);
+    console.log(result);
+    if(result.length > 0 ){
+      this.planning = result[0];
+    } else {
+      this.planning = {
+        month: today.getMonth() + 1,
+        year: today.getFullYear(),
+        plannedIncome: 0,
+        plannedOutcome: 0
+      }
+    }
+  }
+
+  proccessPlanning(result, year, month) {
+    if(result.length > 0 ){
+      this.planning = result[0];
+    } else {
+      this.planning = {
+        month: month,
+        year: year,
+        plannedIncome: 0,
+        plannedOutcome: 0
+      }
+    }
   }
 
   chosenYearHandler(normalizedYear: Moment) {
     const ctrlValue = this.date.value;
     ctrlValue.year(normalizedYear.year());
+    this.plannedYear = normalizedYear.year();
     this.date.setValue(ctrlValue);
   }
 
-  chosenMonthHandler(normalizedMonth: Moment, datepicker: MatDatepicker<Moment>) {
+  async chosenMonthHandler(normalizedMonth: Moment, datepicker: MatDatepicker<Moment>) {
     const ctrlValue = this.date.value;
     ctrlValue.month(normalizedMonth.month());
+    this.plannedMonth = normalizedMonth.month() + 1;
     this.date.setValue(ctrlValue);
-    console.log(this.date.value)
     datepicker.close();
+    await this.filter();
   }
 
-  saveMonthlyPlanning() {
-    console.log('save');
+  async saveMonthlyPlanning() {
+    await this.planningService.saveMonthlyPlanning(this.planning);
+  }
+
+  async filter() {
+    const result = await this.planningService.getMonthlyPlanning(this.plannedYear, this.plannedMonth);
+    this.proccessPlanning(result, this.plannedYear, this.plannedMonth);
   }
 
 }

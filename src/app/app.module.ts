@@ -21,6 +21,8 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+
 
 import { IncomingRegisterComponent } from './incoming-register/incoming-register.component';
 import { MenuComponent } from './menu/menu.component';
@@ -33,6 +35,8 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireStorageModule } from '@angular/fire/storage';
+import { NotificationComponent, NotificationContainerComponent } from './notification/notification.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 @NgModule({
   declarations: [
@@ -42,7 +46,9 @@ import { AngularFireStorageModule } from '@angular/fire/storage';
     MenuComponent,
     SidenavComponent,
     TransactionsHistoryComponent,
-    MonthlyPlanningComponent
+    MonthlyPlanningComponent,
+    NotificationComponent,
+    NotificationContainerComponent
   ],
   imports: [
     BrowserModule,
@@ -64,12 +70,20 @@ import { AngularFireStorageModule } from '@angular/fire/storage';
     MatListModule,
     MatMenuModule,
     MatDividerModule,
+    MatSnackBarModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     AngularFireAuthModule,
     AngularFireStorageModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
   ],
   providers: [],
+  entryComponents: [
+    NotificationContainerComponent
+  ],
+  exports: [
+    NotificationComponent
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

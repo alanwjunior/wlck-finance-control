@@ -20,15 +20,15 @@
             </mat-form-field>
           </div>
         </div>
-        <div class="row">
+        <div class="row" *ngIf="planning">
           <div class="col-12">
             <mat-form-field style="width: 100%">
-              <input matInput placeholder="Entrada" type="number">
+              <input matInput placeholder="Entrada" [(ngModel)]="planning.plannedIncome"  type="number">
             </mat-form-field>
           </div>
           <div class="col-12">
             <mat-form-field style="width: 100%">
-              <input matInput placeholder="Saída" type="number">
+              <input matInput placeholder="Saída" [(ngModel)]="planning.plannedOutcome" type="number">
             </mat-form-field>
           </div>
           <div class="col-12 align-center">

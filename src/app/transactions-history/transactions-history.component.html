@@ -1,13 +1,17 @@
 <div class="app-container">
-  <div class="row transactions-history application-container">
+  <div class="row transactions-history application-container" *ngIf="selectedMonthlyPlanning">
     <div class="col-12">
       <h4 class="transactions-history-title" [matMenuTriggerFor]="adminMenu">
-        Setembro 2019
+        {{ selectedMonthlyPlanning.label }}
         <mat-icon class="history-icon">keyboard_arrow_down</mat-icon>
       </h4>
       <mat-menu #adminMenu="matMenu" yPosition="below">
-        <button mat-menu-item>Setembro 2019</button>
-        <button mat-menu-item>Agosto 2019</button>
+        <button 
+          mat-menu-item 
+          *ngFor="let monthlyPlanning of monthlyPlannings"
+          (click)="selectMonthlyPlanning(monthlyPlanning)">
+            {{ monthlyPlanning.label }}
+        </button>
       </mat-menu>
     </div>
 
@@ -16,13 +20,13 @@
         <div class="row">
           <div class="col-12 monthly-resume">
             <h5>Entradas</h5>
-            <p>R$0 de R$5000 planejados</p>
-            <mat-progress-bar mode="determinate" value="40"></mat-progress-bar>
+            <p>R${{ totalIncomes }} de R${{ selectedMonthlyPlanning.plannedIncome }} planejados</p>
+            <mat-progress-bar mode="determinate" [value]="percentageIncomes"></mat-progress-bar>
           </div>
           <div class="col-12 monthly-resume">
             <h5>Saídas</h5>
-            <p>R$0 de R$5000 planejados</p>
-            <mat-progress-bar mode="determinate" value="40"></mat-progress-bar>
+            <p>R${{ totalOutcomes }} de R${{ selectedMonthlyPlanning.plannedOutcome }} planejados</p>
+            <mat-progress-bar mode="determinate" [value]="percentageOutcomes"></mat-progress-bar>
           </div>
         </div>
 
@@ -32,22 +36,30 @@
           </div>
         </div>
 
-        <div 
-          class="row" 
-          *ngFor="let transaction of monthlyTransactions; let i = index"
-          [ngClass]="{ 'transaction': i !== 0 }">
-          <div class="col-2">
-            <span>
-              <i class="material-icons">
-                {{ transaction.icon }}
-              </i>
-            </span>
+        <div class="transactions-container" *ngIf="monthlyTransactions && monthlyTransactions.length > 0">
+          <div 
+            class="row" 
+            *ngFor="let transaction of monthlyTransactions; let i = index"
+            [ngClass]="{ 'transaction': i !== 0 }">
+            <div class="col-2">
+              <span [ngClass]="{ 'income': transaction.transactionType == 0, 'outcome': transaction.transactionType == 1 }">
+                <i class="material-icons">
+                  {{ transaction.icon }}
+                </i>
+              </span>
+            </div>
+            <div class="col-6">
+              {{ transaction.establishment }}
+            </div>
+            <div class="col-4">
+              {{ transaction.transactionType == 0 ? '' : '- ' }}R${{ transaction.value }}
+            </div>
           </div>
-          <div class="col-7">
-            {{ transaction.establishment }}
-          </div>
-          <div class="col-3">
-            R${{ transaction.value }}
+        </div>
+
+        <div class="row" *ngIf="!monthlyTransactions || monthlyTransactions.length === 0">
+          <div class="col-12">
+            Nenhuma transação no período
           </div>
         </div>
       </mat-card>

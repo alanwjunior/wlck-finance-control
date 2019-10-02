@@ -21,7 +21,6 @@ export class MenuComponent implements OnInit {
   }
 
   openMenu() {
-    console.log('open menu');
     this.onOpenMenu.emit();
   }
 }
