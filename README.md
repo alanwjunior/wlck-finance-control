@@ -39,7 +39,7 @@ export const environment = {
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
 
 ## How it works
-Access the [project](https://wlck-finance-control.firebaseapp.com/), register your user and start to use. Follow the descriptions below to understand how to use the application.
+Access the [app](https://wlck-finance-control.firebaseapp.com/), register your user and start to use. Follow the descriptions below to understand how to use the application.
 
 ### Transactions
 The control manage is associate with transactions register. There are two types of transaction: income and outcome. Income is every money that enter in your wallet and outcome is every money that leave your wallet.
