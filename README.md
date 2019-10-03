@@ -9,8 +9,8 @@ Techonologies:
 
 The interface was developed in Angular and the deployed into firebase.
 To run the project, follow the steps below:
-1. Create a path named "environments" inside the "src" path.
-2. Create two files inside this path: "environment.ts" and "environment.prod.ts".
+1. Create a path named **environments** inside the **src** path.
+2. Create two files inside this path: **environment.ts** and **environment.prod.ts**.
 3. Copy and paste this information inside this files and change according to your firebase account project:
 ```diff
 export const environment = {
@@ -46,7 +46,7 @@ The transactions are categorized in:
 2. Supermarket
 3. Hobbie
 4. Transportation
-5. labor expenses
+5. Labor expenses
 6. Trip
 7. Food
 8. Study
