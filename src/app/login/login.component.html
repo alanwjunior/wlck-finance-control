@@ -1,0 +1,29 @@
+<div class="app-container">
+  <div class="login application-container">
+    
+    <div class="row align-items-center login-content">
+      <div class="col-12">
+        <div class="row">
+          <div class="col-12">
+            <p class="align-center">
+              <img src="../../assets/icons/icon-192x192.png" alt="">
+            </p>
+          </div>
+          <div class="col-12">
+            <mat-card>
+              <h6 class="align-center login-title">Login</h6>
+              <mat-form-field style="width: 100%">
+                <input matInput placeholder="E-mail" [(ngModel)]="email" type="email">
+              </mat-form-field>
+              <mat-form-field style="width: 100%">
+                <input matInput placeholder="Senha" [(ngModel)]="password" type="password">
+              </mat-form-field>
+    
+              <button class="login-btn" (click)="login()">ENTRAR</button>
+            </mat-card>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

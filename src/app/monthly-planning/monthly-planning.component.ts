@@ -48,7 +48,6 @@ export class MonthlyPlanningComponent implements OnInit {
   async ngOnInit() {
     const today = new Date();
     const result = await this.planningService.getMonthlyPlanning(today.getFullYear(), today.getMonth() + 1);
-    console.log(result);
     if(result.length > 0 ){
       this.planning = result[0];
     } else {

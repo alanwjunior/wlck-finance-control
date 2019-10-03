@@ -33,7 +33,5 @@ export class NotificationComponent implements OnInit {
 })
 export class NotificationContainerComponent {
   constructor(@Inject(MAT_SNACK_BAR_DATA) public data: any) {
-    console.log('dados');
-    console.log(data);
   }
 }

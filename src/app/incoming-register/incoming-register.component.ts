@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CategoryService } from '../services/category/category.service';
 import { TransactionService } from '../services/transaction/transaction.service';
 import { Router } from '@angular/router';
+import { NotificationService } from '../services/notification/notification.service';
 
 @Component({
   selector: 'app-incoming-register',
@@ -20,7 +21,8 @@ export class IncomingRegisterComponent implements OnInit {
   constructor(
     private categoryService: CategoryService,
     private transactionService: TransactionService,
-    private router: Router
+    private router: Router,
+    private notificationService: NotificationService
   ) { }
 
   async ngOnInit() {
@@ -28,7 +30,10 @@ export class IncomingRegisterComponent implements OnInit {
       const result = await this.categoryService.getCategories();
       this.categories = result;
     } catch {
-      console.log('error');
+      this.notificationService.notification$.next({
+        type: 'error',
+        message: 'Erro ao carregar categorias!'
+      });
     }
   }
 

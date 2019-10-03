@@ -93,13 +93,12 @@ export class TransactionsHistoryComponent implements OnInit {
       const endDate = this.selectedMonthlyPlanning.month === 12 ? 
         new Date(this.selectedMonthlyPlanning.year + 1, 1, 1) : 
         new Date(this.selectedMonthlyPlanning.year, this.selectedMonthlyPlanning.month, 1);
-      // const endDate = new Date(this.selectedMonthlyPlanning.year, this.selectedMonthlyPlanning.month, 1);
       const transactions = await this.transactionService.getTransactionsByPeriod(startDate, endDate);
       this.monthlyTransactions = transactions;
-      const incomes = this.monthlyTransactions.filter(transaction => transaction.transactionType === 0);
-      const outcomes = this.monthlyTransactions.filter(transaction => transaction.transactionType === 1);
-      this.totalIncomes = this.calcTotalIncomes(incomes);
-      this.totalOutcomes = this.calcTotalOutcomes(outcomes);
+      const incomes = this.monthlyTransactions.filter(transaction => transaction.transactionType == 0);
+      const outcomes = this.monthlyTransactions.filter(transaction => transaction.transactionType == 1);
+      this.totalIncomes = this.calcTotalIncomes(incomes.map(income => income.value));
+      this.totalOutcomes = this.calcTotalOutcomes(outcomes.map(outcome => outcome.value));
       this.percentageIncomes = this.selectedMonthlyPlanning.plannedIncome === 0 ? 
         0 :
         Math.floor(this.totalIncomes / this.selectedMonthlyPlanning.plannedIncome * 100);
@@ -117,9 +116,9 @@ export class TransactionsHistoryComponent implements OnInit {
     if(incomes.length === 0) {
       return 0;
     } else if(incomes.length === 1) {
-      return incomes[0].value;
+      return incomes[0];
     } else {
-      return incomes.reduce((previous, next) => previous.value + next.value);
+      return incomes.reduce((previous, next) => previous + next);
     }
   }
 
@@ -127,9 +126,9 @@ export class TransactionsHistoryComponent implements OnInit {
     if(outcomes.length === 0) {
       return 0;
     } else if(outcomes.length === 1) {
-      return outcomes[0].value;
+      return outcomes[0];
     } else {
-      return outcomes.map(outcome => outcome.value).reduce((previous, next) => previous + next);
+      return outcomes.reduce((previous, next) => previous + next);
     }
   }
 
@@ -142,7 +141,15 @@ export class TransactionsHistoryComponent implements OnInit {
     this.monthlyPlannings.sort((previous, next) => {
       return previous.date > next.date ? -1 : previous.date < next.date ? 1 : 0;
     });
-    this.selectedMonthlyPlanning = this.monthlyPlannings.length > 0 ? this.monthlyPlannings[0] : null;
+    const now = new Date();
+    if(this.monthlyPlannings.length > 0) {
+      const actualMonthlyPlanning = this.monthlyPlannings.find(planning => planning.month == now.getMonth() + 1 && planning.year == now.getFullYear());
+      this.selectedMonthlyPlanning = actualMonthlyPlanning ? 
+        actualMonthlyPlanning : 
+        this.monthlyPlannings[0];
+    } else {
+      this.selectedMonthlyPlanning = null;
+    }
   }
 
   async selectMonthlyPlanning(monthlyPlanning) {

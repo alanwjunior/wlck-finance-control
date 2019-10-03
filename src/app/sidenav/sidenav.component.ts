@@ -40,7 +40,8 @@ export class SidenavComponent implements OnInit {
 
   logout() {
     this.onCloseMenu.emit();
-    console.log('logout');
+    localStorage.clear();
+    this.router.navigate(['/login']);
   }
 
   closeMenu() {

@@ -25,7 +25,6 @@ export class CategoryService {
         type: 'error',
         message: 'Erro ao listas categorias!'
       });
-      console.log('error');
     }
   }
 }

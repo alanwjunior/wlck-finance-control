@@ -1,6 +1,6 @@
 <div class="app-container">
   <div class="dashboard application-container" *ngIf="actualMonthlyPlanning">
-    
+    <h4 class="dashboard-history-title">{{ actualMonth }}, {{ actualYear }}</h4>
     <div class="row dashboard-card">
       <div class="col-12">
         <mat-card>
@@ -27,7 +27,7 @@
           <h6>Dias restantes</h6>
           <div class="circle">
             <span>
-              {{ this.pendingDays }}
+              {{ pendingDays }}
             </span>
           </div>
         </div>
@@ -35,7 +35,7 @@
           <h6>Gasto diário</h6>
           <div class="circle">
             <span>
-              R$30,00
+              R${{ meanCostsByDay | number: '1.1-2' }}
             </span>
           </div>
         </div>
@@ -50,7 +50,7 @@
           <h5>Últimas transações</h5>
           <div class="row" *ngFor="let transaction of transactions">
             <div class="col-2">
-              <span [ngClass]="{ 'income': transaction.transactionType === 0, 'outcome': transaction.transactionType === 1  }">
+              <span [ngClass]="{ 'income': transaction.transactionType == 0, 'outcome': transaction.transactionType == 1  }">
                 <i class="material-icons">
                     {{ transaction.icon }}
                   </i>
@@ -59,7 +59,7 @@
             <div class="col-6">
               {{ transaction.establishment }}
             </div>
-            <div class="col-4">
+            <div class="col-4 align-right">
               {{ transaction.transactionType == 0 ? '' : '- ' }}R${{ transaction.value }}
             </div>
           </div>
@@ -69,9 +69,11 @@
 
   </div>
 
-  <div class="row" *ngIf="!actualMonthlyPlanning">
-    <div class="col-12">
-      Nenhum planejamento para o mês atual.
+  <div class="dashboard application-container">
+    <div class="row" *ngIf="!actualMonthlyPlanning">
+      <div class="col-12">
+        Nenhum planejamento para o mês atual.
+      </div>
     </div>
   </div>
 </div>

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { NotificationService } from '../notification/notification.service';
+import { LoginService } from '../login/login.service';
 
 @Injectable({
   providedIn: 'root'
@@ -9,13 +10,18 @@ export class PlanningService {
 
   constructor(
     private db: AngularFirestore,
-    private notificationService: NotificationService
+    private notificationService: NotificationService,
+    private loginService: LoginService
   ) { }
 
   async listMonthlyPlanning() {
     try {
+      const uid = this.loginService.getCurrentUser();
       let monthlyPlannings = [];
-      const snapshot = await this.db.collection('monthly-planning').get().toPromise();
+      const snapshot = await this.db.collection('monthly-planning')
+        .ref
+        .where('uid', '==', uid)
+        .get();
       snapshot.docs.forEach(async planning => {
         monthlyPlannings.push(planning.data())
       });
@@ -25,16 +31,17 @@ export class PlanningService {
         type: 'error',
         message: 'Erro ao listar planejamento mensais!'
       });
-      console.log('error');
     }
   }
 
   async getMonthlyPlanning(year, month) {
     try {
+      const uid = this.loginService.getCurrentUser();
       let monthlyPlanning = [];
       const snapshot = await this.db.collection('monthly-planning').ref
         .where('month', '==', month)
         .where('year', '==', year)
+        .where('uid', '==', uid)
         .get();
       snapshot.docs.forEach(async planning => {
         monthlyPlanning.push(planning.data())
@@ -50,6 +57,8 @@ export class PlanningService {
 
   async saveMonthlyPlanning(monthlyPlanning) {
     try {
+      const uid = this.loginService.getCurrentUser();
+      monthlyPlanning.uid = uid;
       const snapshot = await this.db.collection('monthly-planning').ref
       .where('month', '==', monthlyPlanning.month)
       .where('year', '==', monthlyPlanning.year)
@@ -75,6 +84,8 @@ export class PlanningService {
 
   async updateMonthlyPlanning(monthlyPlanningId, monthlyPlanning) {
     try {
+      const uid = this.loginService.getCurrentUser();
+      monthlyPlanning.uid = uid;
       const result = await this.db.collection('monthly-planning').doc(monthlyPlanningId).update(monthlyPlanning);
       this.notificationService.notification$.next({
         type: 'success',
@@ -91,6 +102,8 @@ export class PlanningService {
 
   async addMonthlyPlanning(monthlyPlanning) {
     try {
+      const uid = this.loginService.getCurrentUser();
+      monthlyPlanning.uid = uid;
       const collectionRef = await this.db.collection('monthly-planning').ref;
       const result = await collectionRef.add(monthlyPlanning);
       this.notificationService.notification$.next({

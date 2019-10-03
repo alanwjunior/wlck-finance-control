@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NotificationService } from './services/notification/notification.service';
 import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 import { NotificationContainerComponent } from './notification/notification.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -16,6 +17,7 @@ export class AppComponent {
   constructor(
     private notificationService: NotificationService,
     private snackBar: MatSnackBar,
+    private router: Router
   ) {
       
       // Notification Service configuration
@@ -34,5 +36,9 @@ export class AppComponent {
         }
         this.snackBar.openFromComponent(NotificationContainerComponent, snackBarConfig);
       });
+  }
+
+  isLoginPage() {
+    return this.router.url.indexOf('login') !== -1;
   }
 }
