@@ -55,7 +55,7 @@ The transactions are categorized in:
 11. Home
 
 ### Monthly Planning
-Plan your month outcomes and incomes, try hard to keep your goal!
+Plan your month outcomes and incomes and manage your monthly goal!
 
 ### History
 Monthly history of incomes and outcomes. See all monthly transactions and your goals.
