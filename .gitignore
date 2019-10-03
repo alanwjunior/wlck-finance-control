@@ -48,3 +48,4 @@ Thumbs.db
 # Firebase credentials
 /src/environments/*
 src/environments/environment.ts
+*.cache
