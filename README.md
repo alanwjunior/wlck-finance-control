@@ -1,8 +1,12 @@
 # WLCK FinanceControl
 
+<p align="center">
+  <img src=".src/assets/icons/icon-384x384.png" alt="WLCK Finance Control" width="auto">
+</p>
+
 WLCK Finance Control is a PWA developed to help you on your finance control. Using the application you can register your incomes and outcomes and also plan your monthly expenses.
 Techonologies:
-- Angular
+- Angular 8
 - Firebase
 
 ## Techonologies
@@ -27,8 +31,8 @@ export const environment = {
   timeSession: 30, // time to expire the user session in minutes
 };
 ```
-
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+4. Run `npm install` to install all the project dependencies.
+5. Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
 ## Build
 
