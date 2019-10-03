@@ -1,7 +1,7 @@
 # WLCK FinanceControl
 
 <p align="center">
-  <img src=".src/assets/icons/icon-384x384.png" alt="WLCK Finance Control" width="auto">
+  <img src="src/assets/icons/icon-384x384.png" alt="WLCK Finance Control" width="auto">
 </p>
 
 WLCK Finance Control is a PWA developed to help you on your finance control. Using the application you can register your incomes and outcomes and also plan your monthly expenses.
