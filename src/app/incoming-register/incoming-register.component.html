@@ -1,49 +1,54 @@
 <div class="app-container">
   <div class="row incoming-register application-container">
     <div class="col-12">
-      <mat-radio-group color="primary" aria-label="Tipo transação" (change)="changeTransactionType($event)">
+      <mat-card>
         <div class="row">
-          <div class="col-6">
-            <mat-radio-button value="0">Entrada</mat-radio-button>
+          <div class="col-12">
+            <mat-radio-group color="primary" aria-label="Tipo transação" (change)="changeTransactionType($event)">
+              <div class="row">
+                <div class="col-6">
+                  <mat-radio-button value="0">Entrada</mat-radio-button>
+                </div>
+                <div class="col-6">
+                  <mat-radio-button checked="true" value="1">Saída</mat-radio-button>
+                </div>
+              </div>
+            </mat-radio-group>
           </div>
-          <div class="col-6">
-            <mat-radio-button checked="true" value="1">Saída</mat-radio-button>
+          <div class="col-12">
+            <mat-form-field style="width: 100%">
+                <mat-label>Categoria</mat-label>
+                <mat-select (selectionChange)="changeSelectedCategory($event)">
+                  <mat-option *ngFor="let category of categories" [value]="category.id">
+                    {{ category.label }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+          </div>
+          <div class="col-12">
+            <mat-form-field style="width: 100%">
+              <input matInput [matDatepicker]="picker" placeholder="Data" (dateChange)="changeDate($event)">
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+          </div>
+          <div class="col-12">
+            <mat-form-field style="width: 100%">
+              <input matInput placeholder="Valor" [(ngModel)]="transactionValue" type="number">
+            </mat-form-field>
+          </div>
+          <div class="col-12">
+            <mat-form-field style="width: 100%">
+              <input matInput placeholder="Estabelecimento" [(ngModel)]="transactionEstablishment">
+            </mat-form-field>
+          </div>
+          <div class="col-12 align-center">
+            <button class="submit-btn" mat-fab color="primary" (click)="saveTransaction()">
+              <mat-icon>done</mat-icon>
+            </button>
           </div>
         </div>
-      </mat-radio-group>
-    </div>
-    <div class="col-12">
-      <mat-form-field style="width: 100%">
-          <mat-label>Categoria</mat-label>
-          <mat-select (selectionChange)="changeSelectedCategory($event)">
-            <mat-option *ngFor="let category of categories" [value]="category.id">
-              {{ category.label }}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-    </div>
-    <div class="col-12">
-      <mat-form-field style="width: 100%">
-        <input matInput [matDatepicker]="picker" placeholder="Data" (dateChange)="changeDate($event)">
-        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
-      </mat-form-field>
-    </div>
-    <div class="col-12">
-      <mat-form-field style="width: 100%">
-        <input matInput placeholder="Valor" [(ngModel)]="transactionValue" type="number">
-      </mat-form-field>
-    </div>
-    <div class="col-12">
-      <mat-form-field style="width: 100%">
-        <input matInput placeholder="Estabelecimento" [(ngModel)]="transactionEstablishment">
-      </mat-form-field>
-    </div>
-    <div class="col-12 align-center">
-      <button class="submit-btn" mat-fab color="primary" (click)="saveTransaction()">
-        <mat-icon>done</mat-icon>
-      </button>
+      </mat-card>
     </div>
   </div>
-
 </div>
