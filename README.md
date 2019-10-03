@@ -1,27 +1,61 @@
-# WlckFinanceControl
+# WLCK FinanceControl
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.1.2.
+WLCK Finance Control is a PWA developed to help you on your finance control. Using the application you can register your incomes and outcomes and also plan your monthly expenses.
+Techonologies:
+- Angular
+- Firebase
 
-## Development server
+## Techonologies
+
+The interface was developed in Angular and the deployed into firebase.
+To run the project, follow the steps below:
+1. Create a path named "environments" inside the "src" path.
+1.1. Create two files inside this path: "environment.ts" and "environment.prod.ts".
+1.2. Copy and paste this information inside this files and change according to your firebase account project:
+```diff
+export const environment = {
+  production: false, // change to true on environment.prod.ts
+  firebase: {
+    apiKey: "<YOUR FIREBASE PROJECT API KEY>",
+    authDomain: "<YOUR FIREBASE AUTH DOMAIN",
+    databaseURL: "<YOUR FIREBASE PROJECT DATABASE URL>",
+    projectId: "<YOUR FIREBASE PROJECT ID>",
+    storageBucket: "<YOUR FIREBASE PROJECT STORAGE BUCKET>",
+    messagingSenderId: "<YOUR FIREBASE MESSAGING SENDER ID>",
+    appId: "<YOUR FIREBASE APP ID>"
+  },
+  timeSession: 30, // time to expire the user session in minutes
+};
+```
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
 ## Build
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
 
-## Running unit tests
+## How it works
+Access the [project](https://wlck-finance-control.firebaseapp.com/), register your user and start to use. Follow the descriptions below to understand how to use the application.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+### Transactions
+The control manage is associate with transactions register. There are two types of transaction: income and outcome. Income is every money that enter in your wallet and outcome is every money that leave your wallet.
 
-## Running end-to-end tests
+### Categories
+The transactions are categorized in:
+1. Gym
+2. Supermarket
+3. Hobbie
+4. Transportation
+5. labor expenses
+6. Trip
+7. Food
+8. Study
+9. Ordinary Expenses
+10. Services (Telephone, laundry, etc)
+11. Home
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+### Monthly Planning
+Plan your month outcomes and incomes, try hard to keep your goal!
 
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+### History
+Monthly history of incomes and outcomes. See all monthly transactions and your goals.
