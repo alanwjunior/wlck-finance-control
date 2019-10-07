@@ -26,6 +26,14 @@ export class LoginService {
     }
   }
 
+  setUserInfo(userLoginResult) {
+    const datetimeNow = new Date();
+    localStorage.setItem('user', JSON.stringify(userLoginResult.user));
+    localStorage.setItem('userEmail', userLoginResult.user.email);
+    localStorage.setItem('uidtoken', userLoginResult.user.uid);
+    localStorage.setItem('loginDate', datetimeNow.toString());
+  }
+
   getCurrentUser() {
     return localStorage.getItem('uidtoken');
   }

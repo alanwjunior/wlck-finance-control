@@ -8,7 +8,7 @@
     <app-sidenav (onCloseMenu)="sidenav.toggle()"></app-sidenav>
   </mat-sidenav>
   <mat-sidenav-content>
-    <app-menu (onOpenMenu)="sidenav.toggle()" *ngIf="!isLoginPage()"></app-menu>
+    <app-menu (onOpenMenu)="sidenav.toggle()" *ngIf="showMenu()"></app-menu>
     <router-outlet></router-outlet>
   </mat-sidenav-content>
 </mat-sidenav-container>

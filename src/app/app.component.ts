@@ -38,7 +38,9 @@ export class AppComponent {
       });
   }
 
-  isLoginPage() {
-    return this.router.url.indexOf('login') !== -1;
+  showMenu() {
+    return this.router.url.indexOf('login') === -1 &&
+      this.router.url.indexOf('create-user') === -1 &&
+      this.router.url.indexOf('forget-password') === -1;
   }
 }

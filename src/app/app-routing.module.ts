@@ -6,6 +6,8 @@ import { TransactionsHistoryComponent } from './transactions-history/transaction
 import { MonthlyPlanningComponent } from './monthly-planning/monthly-planning.component';
 import { LoginComponent } from './login/login.component';
 import { AuthGuardService } from './services/authGuard/auth-guard.service';
+import { CreateUserComponent } from './create-user/create-user.component';
+import { ForgetPasswordComponent } from './forget-password/forget-password.component';
 
 
 const routes: Routes = [
@@ -14,6 +16,8 @@ const routes: Routes = [
   { path: 'history', component: TransactionsHistoryComponent, canActivate: [AuthGuardService] },
   { path: 'monthly-planning', component: MonthlyPlanningComponent, canActivate: [AuthGuardService] },
   { path: 'login', component: LoginComponent },
+  { path: 'create-user', component: CreateUserComponent },
+  { path: 'forget-password', component: ForgetPasswordComponent },
 ];
 
 @NgModule({

@@ -11,16 +11,23 @@
           </div>
           <div class="col-12">
             <mat-card>
-              <h6 class="align-center login-title">Login</h6>
-              <mat-form-field style="width: 100%">
-                <input matInput placeholder="E-mail" [(ngModel)]="email" type="email">
-              </mat-form-field>
-              <mat-form-field style="width: 100%">
-                <input matInput placeholder="Senha" [(ngModel)]="password" type="password">
-              </mat-form-field>
-    
-              <button class="login-btn" (click)="login()">ENTRAR</button>
-            </mat-card>
+              <div class="col-12">
+                <h6 class="align-center login-title">Login</h6>
+                <mat-form-field style="width: 100%">
+                  <input matInput placeholder="E-mail" [(ngModel)]="email" type="email">
+                </mat-form-field>
+                <mat-form-field style="width: 100%">
+                  <input matInput placeholder="Senha" [(ngModel)]="password" type="password">
+                </mat-form-field>
+                <button class="login-btn" (click)="login()">ENTRAR</button>
+              </div>
+              <div class="col-12 login-page-link-container align-center">
+                <span (click)="createUser()" class="login-page-link">Criar usuário</span>
+              </div>
+              <div class="col-12 login-page-link-container align-center">
+                <span (click)="forgetPassword()" class="login-page-link">Esqueci a senha</span>
+              </div>
+            </mat-card>              
           </div>
         </div>
       </div>

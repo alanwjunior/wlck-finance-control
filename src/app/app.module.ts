@@ -38,6 +38,8 @@ import { AngularFireStorageModule } from '@angular/fire/storage';
 import { NotificationComponent, NotificationContainerComponent } from './notification/notification.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { LoginComponent } from './login/login.component';
+import { CreateUserComponent } from './create-user/create-user.component';
+import { ForgetPasswordComponent } from './forget-password/forget-password.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +52,9 @@ import { LoginComponent } from './login/login.component';
     MonthlyPlanningComponent,
     NotificationComponent,
     NotificationContainerComponent,
-    LoginComponent
+    LoginComponent,
+    CreateUserComponent,
+    ForgetPasswordComponent
   ],
   imports: [
     BrowserModule,

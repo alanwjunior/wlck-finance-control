@@ -47,4 +47,11 @@ export class LoginComponent implements OnInit {
     }
   }
 
+  createUser() {
+    this.router.navigate(['/create-user']);
+  }
+
+  forgetPassword() {
+    this.router.navigate(['/forget-password']);
+  }
 }
